@@ -8,11 +8,12 @@
 :root{
   --background: #fff;
   --fontColor:#000;
-  --fontForNav:1.6rem;
+  --fontForNav:1.1rem;
   --navHover: rgba(193, 193, 193, 0.4);
   --navUnderline: #000;
 }
 .navbar{
+    overflow-y: auto;
     height: 100vh;
     width: 20%;
     background-color: var(--background);
