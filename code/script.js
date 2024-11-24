@@ -18,27 +18,35 @@ document.addEventListener('DOMContentLoaded', function(){
      gradeLevel.forEach(level =>{
         level.addEventListener('click', ()=>{
             gradeLevel.forEach(g => g.classList.remove('active'));
-            level.classList.add('active');
+            level.classList.add('active');  
 
-            const create = document.createElement('table');
+            const createTable = document.createElement('table');
 
-            create.setAttribute('class', 'dashboard-table');
+            createTable.setAttribute('class', 'dashboard-table');
+
+            const createTableCaption = document.createElement('caption');
+            const tableCaption = level.querySelector('.grade-level');
+
+            createTableCaption.textContent = tableCaption.textContent;
+            createTableCaption.setAttribute('class', 'table-caption');
 
             const tableSection = document.querySelector('.table__section');
 
-            tableSection.appendChild(create);
+            tableSection.appendChild(createTable);
+            createTable.appendChild(createTableCaption);
 
             const createTr = document.createElement('tr');
 
-            create.appendChild(createTr);
+            createTable.appendChild(createTr);
+            const tableHeadings = ['No.', 'UID', 'Student Name', 'violation'];
 
-            for(let i = 0; i < 4; i++){
+            tableHeadings.forEach(heading =>{
                 const createTh = document.createElement('th');
 
                 createTh.setAttribute('class', 'table-heading');
-                create.textContent = 'diko alam';
+                createTh.textContent = heading;
                 createTr.appendChild(createTh);
-            }
+            });
         });
      });
 });
