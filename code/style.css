@@ -71,36 +71,6 @@
     gap: 0;
 }
 
-.secondary__navbar{
-    width: 80vw;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    border: 1px solid black;
-    gap: 1rem;
-}
-
-.user--icon__container{
-    height: 50px;
-    width: 50px;
-    border: 1px solid black;
-    order: 1;
-    margin-right:5px ;
-    border: 1px solid black;
-    border-radius: 50%;
-    position: relative;
-}
-
-.upload__profile{
-    outline: none;
-    font-size: 0;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .dashboard__content{
     overflow-y: auto;
     background-color: var(--background);
