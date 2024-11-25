@@ -48,5 +48,21 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     });
 
+    const searchBtn = document.querySelector('.search');
+    searchBtn.addEventListener('click', ()=>{
+        let searchBar = document.querySelector('#search-bar');
+
+        searchBar.classList.toggle('active');
+    });
+
+    //option menu function
+
+    const optionMenuContainer = document.querySelector('.menu__container');
+    const optionBtn = document.querySelector('.option--menu__container');
+
+    optionBtn.addEventListener('click', function(){
+        optionMenuContainer.classList.toggle('active');
+        optionBtn.classList.toggle('is-active');
+    });
 });
 
