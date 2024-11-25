@@ -139,8 +139,8 @@
    right: -1000px;
    z-index: -1;
    opacity: 0;
-    background-color: var(--background);
-    transition: all 0.35s ease;
+   background-color: var(--background);
+   transition: all 0.35s ease;
 }
 
 .option-menu-items{
@@ -160,6 +160,7 @@
     font-size: 1rem;
     text-transform: capitalize;
     z-index: 1;
+    word-wrap: nowrap;
 }
 
 .option-box{
