@@ -107,7 +107,8 @@
 
 .grade-level{
     text-transform: capitalize;
-    font-size: 2rem;
+    font-size: 1.3rem;
+    word-wrap: nowrap;
 }
 
 .violation__container{
