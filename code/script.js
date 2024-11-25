@@ -12,42 +12,41 @@ document.addEventListener('DOMContentLoaded', function(){
             document.title = Title; 
         }
     });
-    //dasboard functions
-     const gradeLevel = document.querySelectorAll('.grade__level--box');
 
-     gradeLevel.forEach(level =>{
-        level.addEventListener('click', ()=>{
-            gradeLevel.forEach(g => g.classList.remove('active'));
-            level.classList.add('active');  
+    //dashboard function
+    const gradeBox = document.querySelectorAll('.grade__level--box');
+    const table = document.querySelector('.dashboard-table');
 
-            const createTable = document.createElement('table');
+    gradeBox.forEach(box => {
 
-            createTable.setAttribute('class', 'dashboard-table');
+        const exitBtn = document.querySelector('.exit-btn__container');
+        const appearTable = document.querySelector('.table');
 
-            const createTableCaption = document.createElement('caption');
-            const tableCaption = level.querySelector('.grade-level');
+        box.addEventListener('click', function () {
 
-            createTableCaption.textContent = tableCaption.textContent;
-            createTableCaption.setAttribute('class', 'table-caption');
+            gradeBox.forEach(b => b.classList.remove('active'));
+            box.classList.add('active');
 
-            const tableSection = document.querySelector('.table__section');
+            appearTable.style.borderColor = 'black';
 
-            tableSection.appendChild(createTable);
-            createTable.appendChild(createTableCaption);
+            table.classList.add('appear');
 
-            const createTr = document.createElement('tr');
+            const tableTitle = table.querySelector('.table-title');
+            const gradeLevel = box.querySelector('.grade-level');
 
-            createTable.appendChild(createTr);
-            const tableHeadings = ['No.', 'UID', 'Student Name', 'violation'];
+            tableTitle.textContent = gradeLevel.textContent;
+            
+            exitBtn.style.display = 'block';
 
-            tableHeadings.forEach(heading =>{
-                const createTh = document.createElement('th');
-
-                createTh.setAttribute('class', 'table-heading');
-                createTh.textContent = heading;
-                createTr.appendChild(createTh);
-            });
         });
-     });
+
+        exitBtn.addEventListener('click', ()=>{
+            box.classList.remove('active');
+            table.classList.remove('appear');
+            appearTable.style.borderColor = 'transparent';
+            exitBtn.style.display = 'none';
+        })
+    });
+
 });
 

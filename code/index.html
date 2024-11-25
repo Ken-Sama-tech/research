@@ -46,6 +46,12 @@
     </nav>
     <!--Dashboard section-->
     <div class="dashboard">
+      <div class="secondary__navbar">
+        <div class="user--icon__container">
+          <input type="file" class="upload__profile" id="upload__profile" />
+        </div>
+        <input type="search" name="search" id="search-bar" />
+      </div>
       <div class="dashboard__content">
         <div class="overview__section">
           <div class="grade__level--box">
@@ -85,7 +91,28 @@
             </div>
           </div>
         </div>
-        <div class="table__section"></div>
+        <!--Table section-->
+        <div class="table">
+          <div class="exit-btn__container">
+            <span class="exit-btn"></span>
+            <span class="exit-btn"></span>
+          </div>
+          <table class="dashboard-table">
+            <div class="exit-btn__container">
+              <span id="exit-btn"></span>
+              <span id="exit-btn"></span>
+            </div>
+            <caption class="table-title">
+              Sample
+            </caption>
+            <tr class="table-row">
+              <th class="table-heading">no.</th>
+              <th class="table-heading">id</th>
+              <th class="table-heading">student name</th>
+              <th class="table-heading">violation</th>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>
