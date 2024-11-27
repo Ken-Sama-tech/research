@@ -330,18 +330,3 @@
     opacity: 1;
     z-index: 1;
 }
-
-@media (max-width: 1200px) {
-    .navbar {
-        width: 25%;
-    }
-
-    .dashboard {
-        margin-left: 25%;
-        width: 75%;
-    }
-
-    .secondary__navbar {
-        width: 75%;
-        margin
-}
