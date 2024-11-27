@@ -86,6 +86,7 @@
 
 .option--menu__container {
     order: 2;
+    cursor: pointer;
 }
 
 .option-menu {
@@ -144,6 +145,7 @@
     opacity: 0;
     background-color: var(--background);
     transition: all 0.35s ease;
+    overflow-y: auto;
 }
 
 .option-menu-items {
@@ -163,11 +165,13 @@
     text-transform: capitalize;
     z-index: 1;
     word-wrap: nowrap;
+    cursor: pointer;
 }
 
 .option-box {
     height: 1rem;
     width: 1rem;
+    cursor: pointer;
 }
 
 .menu__container.active {
@@ -294,7 +298,6 @@
 .dashboard-table,
 .table-heading,
 .table-data {
-    border: 1px solid black;
     border-collapse: collapse;
 }
 
@@ -304,6 +307,7 @@
     margin: auto;
     opacity: 0;
     z-index: -1;
+    border: 1px solid black;
 }
 
 .table-title {

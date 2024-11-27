@@ -13,9 +13,42 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
+    //option menu function
+
+    const optionMenuContainer = document.querySelector('.menu__container');
+    const optionBtn = document.querySelector('.option--menu__container');
+
+    optionBtn.addEventListener('click', function(){
+        optionMenuContainer.classList.toggle('active');
+        optionBtn.classList.toggle('is-active');
+    });
+
+    //table layout 
+    const tableLayout = document.querySelectorAll('input[name="table-layout-checkbox"]');
+    const table = document.querySelector('.dashboard-table');
+    const defaultLayout = document.getElementById('default-layout');
+    const tableBorderBottom = document.getElementById('bottom-border');
+    const removeTableBorder = document.getElementById('remove-border');
+
+    tableLayout.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            tableLayout.forEach(unchecked => {
+                if (unchecked !== this) {
+                    unchecked.checked = false;
+                }
+            });
+            if ([...tableLayout].every(checkbox => !checkbox.checked)) {
+                defaultLayout.checked = true;
+            }
+        });
+    });
+
+    if ([...tableLayout].every(checkbox => !checkbox.checked)) {
+        defaultLayout.checked = true;
+    }
+
     //dashboard function
     const gradeBox = document.querySelectorAll('.grade__level--box');
-    const table = document.querySelector('.dashboard-table');
 
     gradeBox.forEach(box => {
 
@@ -45,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
             table.classList.remove('appear');
             appearTable.style.borderColor = 'transparent';
             exitBtn.style.display = 'none';
-        })
+        });
     });
 
     const searchBtn = document.querySelector('.search');
@@ -55,14 +88,5 @@ document.addEventListener('DOMContentLoaded', function(){
         searchBar.classList.toggle('active');
     });
 
-    //option menu function
-
-    const optionMenuContainer = document.querySelector('.menu__container');
-    const optionBtn = document.querySelector('.option--menu__container');
-
-    optionBtn.addEventListener('click', function(){
-        optionMenuContainer.classList.toggle('active');
-        optionBtn.classList.toggle('is-active');
-    });
 });
 
