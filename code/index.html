@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
   </head>
@@ -49,34 +52,128 @@
         <span class="option-menu"></span>
         <span class="option-menu"></span>
         <span class="option-menu"></span>
+        <span class="options-tooltip">more options</span>
       </div>
-      <div class="user__profile"></div>
+      <div class="user__profile">
+        <span class="account-tooltip">account</span>
+      </div>
       <label for="search-bar" class="search">Search</label>
       <input type="search" name="" id="search-bar" placeholder="Search" />
     </nav>
+    <!--user profile menu-->
+    <ul class="mini--menu__container">
+      <li class="mini--menu__items">
+        <a href="" class="mini--menu__links">profile</a>
+      </li>
+      <li class="mini--menu__items">
+        <a href="" class="mini--menu__links">settings</a>
+      </li>
+      <li class="mini--menu__items">
+        <a href="" class="mini--menu__links">notifications</a>
+      </li>
+      <li class="mini--menu__items">
+        <a href="" class="mini--menu__links">log out</a>
+      </li>
+      <li class="mini--menu__items">
+        <a href="" class="mini--menu__links">switch user</a>
+      </li>
+    </ul>
     <!--option menu-->
     <ul class="menu__container">
       <li class="option-menu-items">
         <label class="label-for-menu" for="remove-border"
           >remove table border</label
         >
-        <input type="checkbox" class="option-box" id="remove-border" name="table-layout-checkbox"/>
+        <input
+          type="checkbox"
+          class="option-box"
+          id="remove-border"
+          name="table-layout-checkbox"
+        />
       </li>
       <li class="option-menu-items">
-        <label class="label-for-menu" for="bottom-border">bottom-border table</label>
-        <input type="checkbox" class="option-box" id="bottom-border" name="table-layout-checkbox"/>
+        <label class="label-for-menu" for="bottom-border"
+          >bottom-border table</label
+        >
+        <input
+          type="checkbox"
+          class="option-box"
+          id="bottom-border"
+          name="table-layout-checkbox"
+        />
       </li>
       <li class="option-menu-items">
-        <label class="label-for-menu" for="default-layout">default table layout</label>
-        <input type="checkbox" class="option-box" id="default-layout" name="table-layout-checkbox"/>
+        <label class="label-for-menu" for="default-layout"
+          >default table layout</label
+        >
+        <input
+          type="checkbox"
+          class="option-box"
+          id="default-layout"
+          name="table-layout-checkbox"
+        />
       </li>
       <li class="option-menu-items">
         <label class="label-for-menu" for="hover-data">hover style 1</label>
-        <input type="checkbox" class="option-box" id="hover-data" name="table-hover-style">
+        <input
+          type="checkbox"
+          class="option-box"
+          id="hover-data"
+          name="table-hover-style"
+        />
       </li>
       <li class="option-menu-items">
         <label class="label-for-menu" for="hover-row">hover style 2</label>
-        <input type="checkbox" class="option-box" id="hover-row" name="table-hover-style">
+        <input
+          type="checkbox"
+          class="option-box"
+          id="hover-row"
+          name="table-hover-style"
+        />
+      </li>
+      <li class="option-menu-items">
+        <label class="label-for-menu" for="horizontal-row-zebra-stripe"
+          >zebra-style 1</label
+        >
+        <input
+          type="checkbox"
+          name="zebra-stripe"
+          class="option-box"
+          id="horizontal-row-zebra-stripe"
+        />
+      </li>
+      <li class="option-menu-items">
+        <label class="label-for-menu" for="vertical-row-zebra-stripe"
+          >zebra-style 2</label
+        >
+        <input
+          type="checkbox"
+          name="zebra-stripe"
+          class="option-box"
+          id="vertical-row-zebra-stripe"
+        />
+      </li>
+      <li class="option-menu-items">
+        <label class="label-for-menu" for="horizontal-zebra-stripe"
+          >zebra-style 3</label
+        >
+        <input
+          type="checkbox"
+          name="zebra-stripe"
+          class="option-box"
+          id="horizontal-zebra-stripe"
+        />
+      </li>
+      <li class="option-menu-items">
+        <label class="label-for-menu" for="vertical-zebra-stripe"
+          >zebra-style 4</label
+        >
+        <input
+          type="checkbox"
+          name="zebra-stripe"
+          class="option-box"
+          id="vertical-zebra-stripe"
+        />
       </li>
     </ul>
     <!--Dashboard section-->
@@ -136,7 +233,7 @@
             </caption>
             <tr class="table-row">
               <th class="table-heading">no.</th>
-              <th class="table-heading">id</th>
+              <th class="table-heading">uid</th>
               <th class="table-heading">student name</th>
               <th class="table-heading">violation</th>
             </tr>

@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // --------------- Search Bar Toggle ---------------
+    const searchBtn = document.querySelector('.search');
+    searchBtn.addEventListener('click', () => {
+        const searchBar = document.querySelector('#search-bar');
+        searchBar.classList.toggle('active');
+    });
+
     // --------------- Option Menu Functionality ---------------
     const optionMenuContainer = document.querySelector('.menu__container');
     const optionBtn = document.querySelector('.option--menu__container');
@@ -20,32 +27,57 @@ document.addEventListener('DOMContentLoaded', function() {
         optionBtn.classList.toggle('is-active');
     });
 
+    //--------------- remove classlist when click outside the target ---------------
+    if(optionBtn){
+        document.addEventListener('click', (event) => {
+            if(!optionBtn.contains(event.target) && !optionMenuContainer.contains(event.target)){
+                optionMenuContainer.classList.remove('active');
+                optionBtn.classList.remove('is-active');
+            }
+        });
+    }
+
+    // --------------- mini menu functinality ---------------
+    const userProfile = document.querySelector('.user__profile');
+    const miniMenuContainer = document.querySelector('.mini--menu__container');
+    userProfile.addEventListener('click', function(){
+        miniMenuContainer.classList.toggle('show');
+    });
+
+    //--------------- remove classlist when click outside the target ---------------
+    if(userProfile){
+        document.addEventListener('click', (e)=>{
+            if(!userProfile.contains(e.target) && !miniMenuContainer.contains(e.target)){
+                miniMenuContainer.classList.remove('show');
+            }
+        });
+    }
+
     // --------------- Table Layout Configuration ---------------
     const tableLayout = document.querySelectorAll('input[name="table-layout-checkbox"]');
     const table = document.querySelector('.dashboard-table');
-    const defaultLayout = document.getElementById('default-layout');
-    const tableBorderBottom = document.getElementById('bottom-border');
-    const removeTableBorder = document.getElementById('remove-border');
-    const tableHeading = document.querySelectorAll('.table-heading');
-    const tableData = document.querySelectorAll('.table-data');
+    const
+        defaultLayout = document.getElementById('default-layout'),
+        tableBorderBottom = document.getElementById('bottom-border'),
+        removeTableBorder = document.getElementById('remove-border');
+    const 
+        tableHeading = document.querySelectorAll('.table-heading'), 
+        tableData = document.querySelectorAll('.table-data');
 
     tableLayout.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            // Reset table borders
+            
             tableHeading.forEach(heading => heading.style.border = 'none');
             tableData.forEach(data => data.style.border = 'none');
 
-            // Uncheck other checkboxes
             tableLayout.forEach(unchecked => {
                 if (unchecked !== this) unchecked.checked = false;
             });
 
-            // If no layout is selected, default layout is checked
             if ([...tableLayout].every(checkbox => !checkbox.checked)) {
                 defaultLayout.checked = true;
             }
 
-            // Apply new table layout
             changeTableLayout();
         });
     });
@@ -72,22 +104,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // --------------- Table Hover Style Functionality ---------------
     const tableMouseOver = document.querySelectorAll('input[name="table-hover-style"]');
     const tableRow = document.querySelectorAll('.table-row');
-    const hoverRow = document.querySelector('#hover-row');
-    const hoverData = document.querySelector('#hover-data');
+    const
+        hoverRow = document.querySelector('#hover-row'), 
+        hoverData = document.querySelector('#hover-data');
 
     tableMouseOver.forEach(checkbox => {
+    
         checkbox.addEventListener('change', function() {
-            // Uncheck other checkboxes
+
+            tableRow.forEach(hover => {
+                hover.addEventListener('mouseover', function() {
+                    hover.style.backgroundColor = ''; 
+                });
+            });
+
+            tableData.forEach(hover => {
+                hover.addEventListener('mouseover', function() {
+                    hover.style.backgroundColor = ''; 
+                });
+            });
+
             tableMouseOver.forEach(unchecked => {
                 if (unchecked !== this) unchecked.checked = false;
             });
 
-            // If no hover style is selected, default to first checkbox
             if ([...tableMouseOver].every(checkbox => !checkbox.checked)) {
                 tableMouseOver[0].checked = true;
             }
 
-            // Apply hover style
             changeTableHoverStyle();
         });
     });
@@ -100,19 +144,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (hoverRow.checked) {
             tableRow.forEach(hover => {
                 hover.addEventListener('mouseover', function() {
-                    hover.style.backgroundColor = '#ccc'; // Row hover effect
+                    hover.style.backgroundColor = '#ccc'; 
                 });
                 hover.addEventListener('mouseout', function() {
-                    hover.style.backgroundColor = ''; // Reset hover effect
+                    hover.style.backgroundColor = ''; 
                 });
             });
         } else if (hoverData.checked) {
             tableData.forEach(hover => {
                 hover.addEventListener('mouseover', function() {
-                    hover.style.backgroundColor = '#ccc'; // Data hover effect
+                    hover.style.backgroundColor = '#ccc'; 
                 });
                 hover.addEventListener('mouseout', function() {
-                    hover.style.backgroundColor = ''; // Reset hover effect
+                    hover.style.backgroundColor = ''; 
                 });
             });
         }
@@ -120,42 +164,74 @@ document.addEventListener('DOMContentLoaded', function() {
 
     changeTableHoverStyle();
 
+    //--------------- Table zebra style functionality ---------------
+    const zebraStripeOptions = document.querySelectorAll('input[name="zebra-stripe"]');
+    const 
+        verticalRowZS = document.querySelector('#vertical-row-zebra-stripe'), 
+        horizontalRowZS = document.querySelector('#horizontal-row-zebra-stripe'),
+        verticalZS = document.querySelector('#vertical-zebra-stripe'),
+        horizontalZS = document.querySelector('#horizontal-zebra-stripe');
+
+    zebraStripeOptions.forEach(checkbox =>{
+        checkbox.addEventListener('change', function(){
+
+            ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{table.classList.remove(style)});
+
+            zebraStripeOptions.forEach(unchecked =>{
+                if(unchecked !== this){
+                    unchecked.checked = false;
+                }
+            });
+
+            if(!checkbox.checked){
+                ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{table.classList.remove(style)});
+            }
+
+            applyTableZebraStyle();
+
+        });
+    });
+
+    function applyTableZebraStyle(){
+        if(verticalRowZS.checked){
+            table.classList.add('vertical-row-stripe');
+        }else if(horizontalRowZS.checked){
+            table.classList.add('horizontal-row-stripe');
+        }else if(verticalZS.checked){
+            table.classList.add('vertical-stripe');
+        }else if(horizontalZS.checked){
+            table.classList.add('horizontal-stripe');
+        }
+    }
+
+
     // --------------- Dashboard Box Functionality ---------------
-    const gradeBox = document.querySelectorAll('.grade__level--box');
-    const exitBtn = document.querySelector('.exit-btn__container');
-    const appearTable = document.querySelector('.table');
+    const 
+        gradeBox = document.querySelectorAll('.grade__level--box'),
+        exitBtn = document.querySelector('.exit-btn__container'),
+        appearTable = document.querySelector('.table');
 
     gradeBox.forEach(box => {
         box.addEventListener('click', function () {
-            // Mark active grade box
+            
             gradeBox.forEach(b => b.classList.remove('active'));
             box.classList.add('active');
 
-            // Show table and set title
             appearTable.style.borderColor = 'black';
             table.classList.add('appear');
             const tableTitle = table.querySelector('.table-title');
             const gradeLevel = box.querySelector('.grade-level');
             tableTitle.textContent = gradeLevel.textContent;
 
-            // Show exit button
             exitBtn.style.display = 'block';
         });
     });
 
     exitBtn.addEventListener('click', () => {
-        // Remove active class and hide elements
+       
         gradeBox.forEach(b => b.classList.remove('active'));
         table.classList.remove('appear');
         appearTable.style.borderColor = 'transparent';
         exitBtn.style.display = 'none';
     });
-
-    // --------------- Search Bar Toggle ---------------
-    const searchBtn = document.querySelector('.search');
-    searchBtn.addEventListener('click', () => {
-        const searchBar = document.querySelector('#search-bar');
-        searchBar.classList.toggle('active');
-    });
-
 });
