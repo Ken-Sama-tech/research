@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
     optionBtn.addEventListener('click', function() {
         optionMenuContainer.classList.toggle('active');
         optionBtn.classList.toggle('is-active');
+
+        const removeTooltip = document.querySelector('.options-tooltip');
+
+        if(optionMenuContainer.classList.contains('active')){
+            removeTooltip.style.display = 'none';
+        }else{
+            removeTooltip.style.display = '';
+        }
     });
 
     //--------------- remove classlist when click outside the target ---------------
@@ -42,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const miniMenuContainer = document.querySelector('.mini--menu__container');
     userProfile.addEventListener('click', function(){
         miniMenuContainer.classList.toggle('show');
+        const removeTooltip = document.querySelector('.account-tooltip');
+        if(miniMenuContainer.classList.contains('show')){
+            removeTooltip.style.display = 'none';
+        }else{
+                removeTooltip.style.display = '';
+        }
     });
 
     //--------------- remove classlist when click outside the target ---------------
@@ -80,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             changeTableLayout();
         });
+
     });
 
     if ([...tableLayout].every(checkbox => !checkbox.checked)) {
@@ -172,38 +187,38 @@ document.addEventListener('DOMContentLoaded', function() {
         verticalZS = document.querySelector('#vertical-zebra-stripe'),
         horizontalZS = document.querySelector('#horizontal-zebra-stripe');
 
-    zebraStripeOptions.forEach(checkbox =>{
-        checkbox.addEventListener('change', function(){
+    if(table){
+        zebraStripeOptions.forEach(checkbox =>{
+            checkbox.addEventListener('change', function(){
 
-            ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{table.classList.remove(style)});
-
-            zebraStripeOptions.forEach(unchecked =>{
-                if(unchecked !== this){
-                    unchecked.checked = false;
-                }
-            });
-
-            if(!checkbox.checked){
                 ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{table.classList.remove(style)});
-            }
+            
+                zebraStripeOptions.forEach(unchecked =>{
+                    if(unchecked !== this){
+                        unchecked.checked = false;
+                    }
+                });
 
-            applyTableZebraStyle();
+                if(!checkbox.checked){
+                    ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{table.classList.remove(style)});
+                }
 
+                applyTableZebraStyle();
+            });
         });
-    });
 
-    function applyTableZebraStyle(){
-        if(verticalRowZS.checked){
-            table.classList.add('vertical-row-stripe');
-        }else if(horizontalRowZS.checked){
-            table.classList.add('horizontal-row-stripe');
-        }else if(verticalZS.checked){
-            table.classList.add('vertical-stripe');
-        }else if(horizontalZS.checked){
-            table.classList.add('horizontal-stripe');
+        function applyTableZebraStyle(){
+            if(verticalRowZS.checked){
+                table.classList.add('vertical-row-stripe');
+            }else if(horizontalRowZS.checked){
+                table.classList.add('horizontal-row-stripe');
+            }else if(verticalZS.checked){
+                table.classList.add('vertical-stripe');
+            }else if(horizontalZS.checked){
+                table.classList.add('horizontal-stripe');
+            }
         }
     }
-
 
     // --------------- Dashboard Box Functionality ---------------
     const 
@@ -211,27 +226,66 @@ document.addEventListener('DOMContentLoaded', function() {
         exitBtn = document.querySelector('.exit-btn__container'),
         appearTable = document.querySelector('.table');
 
-    gradeBox.forEach(box => {
-        box.addEventListener('click', function () {
+    if(gradeBox){
+        gradeBox.forEach(box => {
+            box.addEventListener('click', function () {
             
-            gradeBox.forEach(b => b.classList.remove('active'));
-            box.classList.add('active');
+                gradeBox.forEach(b => b.classList.remove('active'));
+                box.classList.add('active');
 
-            appearTable.style.borderColor = 'black';
-            table.classList.add('appear');
-            const tableTitle = table.querySelector('.table-title');
-            const gradeLevel = box.querySelector('.grade-level');
-            tableTitle.textContent = gradeLevel.textContent;
+                appearTable.style.borderColor = 'black';
+                table.classList.add('appear');
+                const tableTitle = table.querySelector('.table-title');
+                const gradeLevel = box.querySelector('.grade-level');
+                tableTitle.textContent = gradeLevel.textContent;
 
-            exitBtn.style.display = 'block';
+                exitBtn.style.display = 'block';
+            });
         });
-    });
-
-    exitBtn.addEventListener('click', () => {
+        if(exitBtn){
+            exitBtn.addEventListener('click', () => {
        
-        gradeBox.forEach(b => b.classList.remove('active'));
-        table.classList.remove('appear');
-        appearTable.style.borderColor = 'transparent';
-        exitBtn.style.display = 'none';
-    });
+                gradeBox.forEach(b => b.classList.remove('active'));
+                table.classList.remove('appear');
+                appearTable.style.borderColor = 'transparent';
+                exitBtn.style.display = 'none';
+            });
+        }
+    }
+
+    // --------------- Violation log table ---------------
+const violationLogTable = document.querySelector('.violationlog__table');
+
+    if(violationLogTable){
+        zebraStripeOptions.forEach(checkbox =>{
+            checkbox.addEventListener('change', function(){
+
+                ['verti-row-stripe', 'hori-row-stripe', 'verti-stripe', 'hori-stripe'].forEach(style =>{violationLogTable.classList.remove(style)});
+        
+                zebraStripeOptions.forEach(unchecked =>{
+                    if(unchecked !== this){
+                        unchecked.checked = false;
+                    }
+                });
+
+                if(!checkbox.checked){
+                    ['vertical-row-stripe', 'horizontal-row-stripe', 'vertical-stripe', 'horizontal-stripe'].forEach(style =>{violationLogTable.classList.remove(style)});
+                }
+
+                applyViolationTableZebraStyle();
+            });
+        });
+
+        function applyViolationTableZebraStyle(){
+            if(verticalRowZS.checked){
+                violationLogTable.classList.add('verti-row-stripe');
+            }else if(horizontalRowZS.checked){
+                violationLogTable.classList.add('hori-row-stripe');
+            }else if(verticalZS.checked){
+                violationLogTable.classList.add('verti-stripe');
+            }else if(horizontalZS.checked){
+                violationLogTable.classList.add('hori-stripe');
+            }
+        }
+    }
 });
